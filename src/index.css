@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Container {
+  max-width: 60%;
+  padding: 30px 15px;
+  margin: 30px auto;
+  border: 1px solid black;
+}
