@@ -9,6 +9,8 @@ const ModeControl = (props) => {
             type="radio"
             name="mode"
             value="split"
+            checked={props.mode === 'split'}
+            onChange={props.changeMode}
           />
           Поровну между всеми участниками
         </label>
@@ -19,6 +21,8 @@ const ModeControl = (props) => {
             type="radio"
             name="mode"
             value="individual"
+            checked={props.mode === 'individual'}
+            onChange={props.changeMode}
           />
           Каждому индивидуально
         </label>
