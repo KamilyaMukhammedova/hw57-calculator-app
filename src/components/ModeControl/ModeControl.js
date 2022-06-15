@@ -1,4 +1,5 @@
 import React from 'react';
+import SplitMode from "./SplitMode/SplitMode";
 
 const ModeControl = (props) => {
   return (
@@ -26,6 +27,14 @@ const ModeControl = (props) => {
           />
           Каждому индивидуально
         </label>
+      </div>
+
+      <div>
+        <SplitMode splitData={props.splitData} changeSplitData={props.changeSplitData}/>
+      </div>
+
+      <div>
+        <button type="button">Рассчитать</button>
       </div>
     </div>
   );
