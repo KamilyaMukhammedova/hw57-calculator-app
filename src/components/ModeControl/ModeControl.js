@@ -1,5 +1,6 @@
 import React from 'react';
 import SplitMode from "./SplitMode/SplitMode";
+import Service from "./Service/Service";
 
 const ModeControl = (props) => {
   return (
@@ -31,6 +32,10 @@ const ModeControl = (props) => {
 
       <div>
         <SplitMode splitData={props.splitData} changeSplitData={props.changeSplitData}/>
+      </div>
+
+      <div>
+        <Service serviceData={props.serviceData} changeServiceData={props.changeServiceData}/>
       </div>
 
       <div>

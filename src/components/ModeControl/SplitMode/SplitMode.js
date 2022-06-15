@@ -2,7 +2,7 @@ import React from 'react';
 
 const SplitMode = (props) => {
   return (
-    <form style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+    <form style={{display: 'flex', flexDirection: 'column', alignItems: 'space-between'}}>
       <label>
         Человек:
         <input
