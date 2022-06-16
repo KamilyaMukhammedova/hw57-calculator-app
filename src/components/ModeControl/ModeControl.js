@@ -2,6 +2,7 @@ import React from 'react';
 import SplitMode from "./SplitMode/SplitMode";
 import Service from "./Service/Service";
 import SplitBill from "./SplitBill/SplitBill";
+import IndividualMode from "./IndividualMode/IndividualMode";
 
 const ModeControl = (props) => {
   return (
@@ -32,7 +33,10 @@ const ModeControl = (props) => {
       </div>
 
       <div>
-        <SplitMode splitData={props.splitData} changeSplitData={props.changeSplitData}/>
+        {props.mode === 'split' ?
+          (<SplitMode splitData={props.splitData} changeSplitData={props.changeSplitData}/>) :
+          (<IndividualMode people={props.people} addPerson={props.addPerson}/>)
+        }
       </div>
 
       <div>

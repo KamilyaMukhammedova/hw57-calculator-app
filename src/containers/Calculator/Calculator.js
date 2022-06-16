@@ -13,6 +13,8 @@ const Calculator = () => {
     tips: 0,
     delivery: 0,
   });
+  const [people, setPeople] = useState([]);
+
 
   const onModeChange = value => {
     setMode(value);
@@ -52,13 +54,18 @@ const Calculator = () => {
         parseInt(serviceData.delivery);
       const sumPerPerson = Math.ceil(totalSum / parseInt(splitData.personsNumber));
 
-
       return setSplitData(prev => ({
         ...prev,
         sumPerPerson: sumPerPerson,
       }));
     }
+  };
 
+  const onAddPerson = () => {
+    return setPeople(prev => ([
+      ...prev,
+      {userName: '', sum: 0, id: nanoid()},
+    ]));
   };
 
   return (
@@ -69,9 +76,11 @@ const Calculator = () => {
         changeMode={(e) => onModeChange(e.target.value)}
         splitData={splitData}
         serviceData={serviceData}
+        people={people}
         changeSplitData={(e) => onChangeSplitData(e.target.name, e.target.value)}
         changeServiceData={(e) => onChangeServiceData(e.target.name, e.target.value)}
         calculate={() => onCalculate()}
+        addPerson={() => onAddPerson()}
       />
     </div>
   );
