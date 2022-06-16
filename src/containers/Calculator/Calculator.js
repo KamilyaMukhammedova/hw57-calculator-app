@@ -53,7 +53,7 @@ const Calculator = () => {
   const onChangePersonData = (name, value, id) => {
     setPeople(() => {
       return people.map(person => {
-        if(person.id === id) {
+        if (person.id === id) {
           return {
             ...person,
             [name]: value,
@@ -80,13 +80,14 @@ const Calculator = () => {
       }));
     } else {
       const peopleCopy = [...people];
-      const deliverySum = serviceData.delivery / peopleCopy.length;
-      console.log(deliverySum)
-      peopleCopy.map(person => {
-        return {
-          ...person,
-
-        };
+      const deliveryPerPerson = serviceData.delivery / peopleCopy.length;
+      return setPeople(() => {
+        return peopleCopy.map(person => {
+          return {
+            ...person,
+            sumForPay: (parseInt(person.sum) + ((parseInt(person.sum) / 100) * serviceData.tips) + deliveryPerPerson),
+          };
+        });
       });
     }
   };

@@ -12,7 +12,7 @@ const IndividualMode = (props) => {
             onChange={(e) => props.changePersonData(e, person.id)}
           />
           <input
-            type="number"
+            type="text"
             name="sum"
             min="0"
             value={person.sum}
