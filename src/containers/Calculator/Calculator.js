@@ -23,10 +23,12 @@ const Calculator = () => {
   const onChangeSplitData = (name, value) => {
     Object.keys(splitData).map(data => {
       if (data === name) {
-        return setSplitData(prev => ({
-          ...prev,
-          [data]: value,
-        }));
+        if (!isNaN(value) && value !== '') {
+          return setSplitData(prev => ({
+            ...prev,
+            [data]: parseInt(value),
+          }));
+        }
       }
 
       return data;
@@ -36,10 +38,12 @@ const Calculator = () => {
   const onChangeServiceData = (name, value) => {
     Object.keys(serviceData).map(data => {
       if (data === name) {
-        return setServiceData(prev => ({
-          ...prev,
-          [data]: value,
-        }));
+        if (!isNaN(value) && value !== '') {
+          return setServiceData(prev => ({
+            ...prev,
+            [data]: parseInt(value),
+          }));
+        }
       }
 
       return data;
@@ -49,10 +53,11 @@ const Calculator = () => {
   const onCalculate = () => {
     if (mode === 'split') {
       const totalSum =
-        parseInt(splitData.orderPrice) +
-        ((parseInt(splitData.orderPrice) / 100) * parseInt(serviceData.tips)) +
-        parseInt(serviceData.delivery);
-      const sumPerPerson = Math.ceil(totalSum / parseInt(splitData.personsNumber));
+        splitData.orderPrice +
+        ((splitData.orderPrice / 100) * serviceData.tips) +
+        parseInt(serviceData.delivery)
+      ;
+      const sumPerPerson = Math.ceil(totalSum / splitData.personsNumber);
 
       return setSplitData(prev => ({
         ...prev,

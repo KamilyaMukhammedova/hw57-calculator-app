@@ -8,6 +8,7 @@ const SplitMode = (props) => {
         <input
           type="number"
           name="personsNumber"
+          min="0"
           value={props.splitData.personsNumber}
           onChange={props.changeSplitData}
         />
@@ -18,6 +19,7 @@ const SplitMode = (props) => {
         <input
           type="number"
           name="orderPrice"
+          min="0"
           value={props.splitData.orderPrice}
           onChange={props.changeSplitData}
         />

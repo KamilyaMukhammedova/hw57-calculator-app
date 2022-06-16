@@ -35,7 +35,11 @@ const ModeControl = (props) => {
       <div>
         {props.mode === 'split' ?
           (<SplitMode splitData={props.splitData} changeSplitData={props.changeSplitData}/>) :
-          (<IndividualMode people={props.people} addPerson={props.addPerson}/>)
+          (<IndividualMode
+            people={props.people}
+            addPerson={props.addPerson}
+            changePersonData={props.changePersonData}
+          />)
         }
       </div>
 

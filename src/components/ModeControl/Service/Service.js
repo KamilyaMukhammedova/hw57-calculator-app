@@ -8,6 +8,7 @@ const Service = (props) => {
         <input
           type="number"
           name="tips"
+          min="0"
           value={props.serviceData.tips}
           onChange={props.changeServiceData}
         />
@@ -18,6 +19,7 @@ const Service = (props) => {
         <input
           type="number"
           name="delivery"
+          min="0"
           value={props.serviceData.delivery}
           onChange={props.changeServiceData}
         />
