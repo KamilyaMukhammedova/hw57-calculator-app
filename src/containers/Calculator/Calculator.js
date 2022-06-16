@@ -95,7 +95,7 @@ const Calculator = () => {
   const getTotalSumOfIndMode = () => {
     let total = 0;
 
-    for(let i = 0; i < people.length; i++) {
+    for (let i = 0; i < people.length; i++) {
       total += people[i].sumForPay;
     }
 
@@ -109,14 +109,14 @@ const Calculator = () => {
     ]));
   };
 
-  const getPeopleInInd = () => {
-    return people.map(person => {
-      return (
-        <div>
-          <p>{person.userName}: {person.sumForPay} сом</p>
-        </div>
-      )
-    });
+  const onRemovePerson = (personId) => {
+    const peopleCopy = [...people];
+    const personData = peopleCopy.filter(person => person.id === personId);
+    const personDataIndex = peopleCopy.indexOf(id[0]);
+    if (personDataIndex !== -1) {
+      peopleCopy.splice(personDataIndex, 1);
+      return setPeople(peopleCopy);
+    }
   };
 
   return (
@@ -134,6 +134,7 @@ const Calculator = () => {
         calculate={() => onCalculate()}
         addPerson={() => onAddPerson()}
         getIndTotalSum={getTotalSumOfIndMode()}
+        removePerson={(e, id) => onRemovePerson(id)}
       />
     </div>
   );

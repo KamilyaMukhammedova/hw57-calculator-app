@@ -18,7 +18,12 @@ const IndividualMode = (props) => {
             value={person.sum}
             onChange={(e) => props.changePersonData(e, person.id)}
           />
-          <button type="button">-</button>
+          <button
+            type="button"
+            onClick={(e) => props.removePerson(e, person.id)}
+          >
+            -
+          </button>
         </div>
       ))}
       <button type="button" onClick={props.addPerson}>+</button>

@@ -40,6 +40,7 @@ const ModeControl = (props) => {
             people={props.people}
             addPerson={props.addPerson}
             changePersonData={props.changePersonData}
+            removePerson={props.removePerson}
           />)
         }
       </div>
