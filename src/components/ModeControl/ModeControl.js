@@ -50,7 +50,13 @@ const ModeControl = (props) => {
       </div>
 
       <div>
-        <button type="button" onClick={props.calculate}>Рассчитать</button>
+        <button
+          type="button"
+          onClick={props.calculate}
+          disabled={props.disabled}
+        >
+          Рассчитать
+        </button>
       </div>
 
       {props.mode === 'split' ?

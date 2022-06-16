@@ -12,10 +12,10 @@ const IndividualMode = (props) => {
             onChange={(e) => props.changePersonData(e, person.id)}
           />
           <input
-            type="text"
+            type="number"
             name="sum"
             min="0"
-            value={person.sum}
+            value={parseInt(person.sum)}
             onChange={(e) => props.changePersonData(e, person.id)}
           />
           <button

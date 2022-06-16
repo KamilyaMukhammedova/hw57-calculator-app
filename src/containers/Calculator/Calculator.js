@@ -18,45 +18,60 @@ const Calculator = () => {
 
   const onModeChange = value => {
     setMode(value);
+    setServiceData(prev => ({
+      ...prev,
+      tips: 0,
+      delivery: 0
+    }));
+    if(value === 'split') {
+      setPeople([]);
+    } else {
+      setSplitData(prev => ({
+        ...prev,
+        personsNumber: 0,
+        orderPrice: 0,
+        sumPerPerson: 0,
+      }));
+    }
   };
 
   const onChangeSplitData = (name, value) => {
-    Object.keys(splitData).map(data => {
-      if (data === name) {
-        if (!isNaN(value) && value !== '') {
-          return setSplitData(prev => ({
-            ...prev,
-            [data]: parseInt(value),
-          }));
-        }
-      }
-
-      return data;
-    });
+    if (!isNaN(value) && value !== '') {
+      return setSplitData(prev => ({
+        ...prev,
+        [name]: parseInt(value),
+      }));
+    }
   };
 
   const onChangeServiceData = (name, value) => {
-    Object.keys(serviceData).map(data => {
-      if (data === name) {
-        if (!isNaN(value) && value !== '') {
-          return setServiceData(prev => ({
-            ...prev,
-            [data]: parseInt(value),
-          }));
-        }
-      }
-
-      return data;
-    });
+    if (!isNaN(value) && value !== '') {
+      return setServiceData(prev => ({
+        ...prev,
+        [name]: parseInt(value),
+      }));
+    }
   };
 
   const onChangePersonData = (name, value, id) => {
     setPeople(() => {
       return people.map(person => {
         if (person.id === id) {
-          return {
-            ...person,
-            [name]: value,
+          if (name === 'sum' && value !== '') {
+            return {
+              ...person,
+              [name]: parseInt(value),
+            }
+          } else if(name === 'sum' && value === '') {
+            return {
+              ...person,
+              [name]: 0,
+            }
+          } else if(name === 'userName') {
+            return {
+              ...person,
+              [name]: value,
+            }
           }
         }
 
@@ -83,10 +98,11 @@ const Calculator = () => {
       const deliveryPerPerson = serviceData.delivery / peopleCopy.length;
       return setPeople(() => {
         return peopleCopy.map(person => {
-          return {
-            ...person,
-            sumForPay: (parseInt(person.sum) + ((parseInt(person.sum) / 100) * serviceData.tips) + deliveryPerPerson),
-          };
+            return {
+              ...person,
+              sumForPay: (person.sum + ((person.sum / 100) * serviceData.tips) + deliveryPerPerson),
+            };
+
         });
       });
     }
@@ -112,10 +128,31 @@ const Calculator = () => {
   const onRemovePerson = (personId) => {
     const peopleCopy = [...people];
     const personData = peopleCopy.filter(person => person.id === personId);
-    const personDataIndex = peopleCopy.indexOf(id[0]);
+    const personDataIndex = peopleCopy.indexOf(personData[0]);
     if (personDataIndex !== -1) {
       peopleCopy.splice(personDataIndex, 1);
       return setPeople(peopleCopy);
+    }
+  };
+
+  const checkDisabled = () => {
+    if (mode === 'split') {
+      if (splitData.orderPrice === 0 || splitData.personsNumber === 0) {
+        return true;
+      }
+    } else {
+      const d = [];
+      for(let i = 0; i < people.length; i++) {
+        if(people[i].sum === '' || people[i].userName === '' || people[i].sum === 0) {
+          d.push(people[i]);
+        }
+      }
+
+      if(d.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
     }
   };
 
@@ -135,6 +172,7 @@ const Calculator = () => {
         addPerson={() => onAddPerson()}
         getIndTotalSum={getTotalSumOfIndMode()}
         removePerson={(e, id) => onRemovePerson(id)}
+        disabled={checkDisabled()}
       />
     </div>
   );
