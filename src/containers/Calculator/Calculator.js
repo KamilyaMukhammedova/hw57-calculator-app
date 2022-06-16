@@ -19,7 +19,7 @@ const Calculator = () => {
 
   const onChangeSplitData = (name, value) => {
     Object.keys(splitData).map(data => {
-      if(data === name) {
+      if (data === name) {
         return setSplitData(prev => ({
           ...prev,
           [data]: value,
@@ -32,7 +32,7 @@ const Calculator = () => {
 
   const onChangeServiceData = (name, value) => {
     Object.keys(serviceData).map(data => {
-      if(data === name) {
+      if (data === name) {
         return setServiceData(prev => ({
           ...prev,
           [data]: value,
@@ -41,6 +41,18 @@ const Calculator = () => {
 
       return data;
     });
+  };
+
+  const onCalculate = () => {
+    if (mode === 'split') {
+      const totalSum =
+        parseInt(splitData.orderPrice) +
+        ((parseInt(splitData.orderPrice) / 100) * parseInt(serviceData.tips)) +
+        parseInt(serviceData.delivery);
+
+      return  Math.ceil(totalSum / parseInt(splitData.personsNumber));
+    }
+
   };
 
   return (
@@ -53,6 +65,7 @@ const Calculator = () => {
         serviceData={serviceData}
         changeSplitData={(e) => onChangeSplitData(e.target.name, e.target.value)}
         changeServiceData={(e) => onChangeServiceData(e.target.name, e.target.value)}
+        calculate={() => onCalculate()}
       />
     </div>
   );

@@ -39,7 +39,7 @@ const ModeControl = (props) => {
       </div>
 
       <div>
-        <button type="button">Рассчитать</button>
+        <button type="button" onClick={props.calculate}>Рассчитать</button>
       </div>
     </div>
   );
