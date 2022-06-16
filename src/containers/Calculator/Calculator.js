@@ -50,6 +50,21 @@ const Calculator = () => {
     });
   };
 
+  const onChangePersonData = (name, value, id) => {
+    setPeople(() => {
+      return people.map(person => {
+        if(person.id === id) {
+          return {
+            ...person,
+            [name]: value,
+          }
+        }
+
+        return person;
+      });
+    });
+  };
+
   const onCalculate = () => {
     if (mode === 'split') {
       const totalSum =
@@ -63,13 +78,23 @@ const Calculator = () => {
         ...prev,
         sumPerPerson: sumPerPerson,
       }));
+    } else {
+      const peopleCopy = [...people];
+      const deliverySum = serviceData.delivery / peopleCopy.length;
+      console.log(deliverySum)
+      peopleCopy.map(person => {
+        return {
+          ...person,
+
+        };
+      });
     }
   };
 
   const onAddPerson = () => {
     return setPeople(prev => ([
       ...prev,
-      {userName: '', sum: 0, id: nanoid()},
+      {userName: '', sum: 0, sumForPay: 0, id: nanoid()},
     ]));
   };
 
@@ -84,6 +109,7 @@ const Calculator = () => {
         people={people}
         changeSplitData={(e) => onChangeSplitData(e.target.name, e.target.value)}
         changeServiceData={(e) => onChangeServiceData(e.target.name, e.target.value)}
+        changePersonData={(e, id) => onChangePersonData(e.target.name, e.target.value, id)}
         calculate={() => onCalculate()}
         addPerson={() => onAddPerson()}
       />

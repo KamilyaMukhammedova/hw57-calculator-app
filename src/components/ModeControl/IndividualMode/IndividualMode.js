@@ -9,14 +9,14 @@ const IndividualMode = (props) => {
             type="text"
             name="userName"
             value={person.userName}
-            onChange={props.changePersonData}
+            onChange={(e) => props.changePersonData(e, person.id)}
           />
           <input
             type="number"
             name="sum"
             min="0"
             value={person.sum}
-            onChange={props.changePersonData}
+            onChange={(e) => props.changePersonData(e, person.id)}
           />
           <button type="button">-</button>
         </div>
