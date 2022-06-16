@@ -3,6 +3,7 @@ import SplitMode from "./SplitMode/SplitMode";
 import Service from "./Service/Service";
 import SplitBill from "./SplitBill/SplitBill";
 import IndividualMode from "./IndividualMode/IndividualMode";
+import IndividualBill from "./IndividualBill/IndividualBill";
 
 const ModeControl = (props) => {
   return (
@@ -50,7 +51,12 @@ const ModeControl = (props) => {
       <div>
         <button type="button" onClick={props.calculate}>Рассчитать</button>
       </div>
-      <SplitBill splitData={props.splitData}/>
+
+      {props.mode === 'split' ?
+        (<SplitBill splitData={props.splitData}/>) :
+        (<IndividualBill getTotal={props.getIndTotalSum} people={props.people}/>)
+      }
+
     </div>
   );
 };

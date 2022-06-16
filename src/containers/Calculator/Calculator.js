@@ -92,11 +92,31 @@ const Calculator = () => {
     }
   };
 
+  const getTotalSumOfIndMode = () => {
+    let total = 0;
+
+    for(let i = 0; i < people.length; i++) {
+      total += people[i].sumForPay;
+    }
+
+    return total;
+  };
+
   const onAddPerson = () => {
     return setPeople(prev => ([
       ...prev,
       {userName: '', sum: 0, sumForPay: 0, id: nanoid()},
     ]));
+  };
+
+  const getPeopleInInd = () => {
+    return people.map(person => {
+      return (
+        <div>
+          <p>{person.userName}: {person.sumForPay} сом</p>
+        </div>
+      )
+    });
   };
 
   return (
@@ -113,6 +133,7 @@ const Calculator = () => {
         changePersonData={(e, id) => onChangePersonData(e.target.name, e.target.value, id)}
         calculate={() => onCalculate()}
         addPerson={() => onAddPerson()}
+        getIndTotalSum={getTotalSumOfIndMode()}
       />
     </div>
   );
