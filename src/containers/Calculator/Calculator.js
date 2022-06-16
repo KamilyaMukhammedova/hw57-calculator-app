@@ -7,6 +7,7 @@ const Calculator = () => {
   const [splitData, setSplitData] = useState({
     personsNumber: 0,
     orderPrice: 0,
+    sumPerPerson: 0,
   });
   const [serviceData, setServiceData] = useState({
     tips: 0,
@@ -49,8 +50,13 @@ const Calculator = () => {
         parseInt(splitData.orderPrice) +
         ((parseInt(splitData.orderPrice) / 100) * parseInt(serviceData.tips)) +
         parseInt(serviceData.delivery);
+      const sumPerPerson = Math.ceil(totalSum / parseInt(splitData.personsNumber));
 
-      return  Math.ceil(totalSum / parseInt(splitData.personsNumber));
+
+      return setSplitData(prev => ({
+        ...prev,
+        sumPerPerson: sumPerPerson,
+      }));
     }
 
   };
