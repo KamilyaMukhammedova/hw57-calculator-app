@@ -1,0 +1,18 @@
+.SplitModeForm {
+    width: 70%;
+}
+
+.SplitModeLabel {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.SplitModeSpan {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.SplitModeInput {
+    width: 50px;
+    margin-right: 5px;
+}

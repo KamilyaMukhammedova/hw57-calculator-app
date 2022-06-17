@@ -1,32 +1,37 @@
-import React from 'react';
+import './Service.css';
 
 const Service = (props) => {
   return (
-    <form style={{display: 'flex', flexDirection: 'column', alignItems: 'space-between'}}>
-      <label>
-        Процент чаевых:
-        <input
-          type="number"
-          name="tips"
-          min="0"
-          value={props.serviceData.tips}
-          onChange={props.changeServiceData}
-        />
-        <span>%</span>
-      </label>
-      <label>
-        Доставка:
-        <input
-          type="number"
-          name="delivery"
-          min="0"
-          value={props.serviceData.delivery}
-          onChange={props.changeServiceData}
-        />
-        <span>сом</span>
-      </label>
+    <form className="ServiceForm">
+      <div>
+        <label className="ServiceLabel">
+          <span className="ServiceSpan">Процент чаевых:</span>
+          <input
+            type="number"
+            name="tips"
+            min="0"
+            value={props.serviceData.tips}
+            onChange={props.changeServiceData}
+            className="ServiceInput"
+          />
+          <span>%</span>
+        </label>
+      </div>
+      <div>
+        <label className="ServiceLabel">
+          <span className="ServiceSpan">Доставка:</span>
+          <input
+            type="number"
+            name="delivery"
+            min="0"
+            value={props.serviceData.delivery}
+            onChange={props.changeServiceData}
+            className="ServiceInput"
+          />
+          <span>сом</span>
+        </label>
+      </div>
     </form>
-
   );
 };
 

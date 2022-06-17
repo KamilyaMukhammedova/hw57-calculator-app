@@ -1,31 +1,43 @@
-import React from 'react';
+import './SplitMode.css';
 
 const SplitMode = (props) => {
   return (
-    <form style={{display: 'flex', flexDirection: 'column', alignItems: 'space-between'}}>
-      <label>
-        Человек:
-        <input
-          type="number"
-          name="personsNumber"
-          min="0"
-          value={props.splitData.personsNumber}
-          onChange={props.changeSplitData}
-        />
-        <span>чел</span>
-      </label>
-      <label>
-        Сумма заказа:
-        <input
-          type="number"
-          name="orderPrice"
-          min="0"
-          value={props.splitData.orderPrice}
-          onChange={props.changeSplitData}
-        />
-        <span>сом</span>
-      </label>
-    </form>
+    <div>
+      <form className="SplitModeForm">
+        <div>
+          <label className="SplitModeLabel">
+            <span className="SplitModeSpan">Человек:</span>
+            <span>
+            <input
+              type="number"
+              name="personsNumber"
+              min="0"
+              value={props.splitData.personsNumber}
+              onChange={props.changeSplitData}
+              className="SplitModeInput"
+            />
+           <span>чел</span>
+          </span>
+          </label>
+        </div>
+        <div>
+          <label className="SplitModeLabel">
+            <span className="SplitModeSpan">Сумма заказа:</span>
+            <span>
+            <input
+              type="number"
+              name="orderPrice"
+              min="0"
+              value={props.splitData.orderPrice}
+              onChange={props.changeSplitData}
+              className="SplitModeInput"
+            />
+            <span>сом</span>
+          </span>
+          </label>
+        </div>
+      </form>
+    </div>
   );
 };
 

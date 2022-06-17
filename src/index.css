@@ -1,20 +1,58 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .Container {
-  max-width: 60%;
-  padding: 30px 15px;
-  margin: 30px auto;
-  border: 1px solid black;
+    max-width: 500px;
+    padding: 30px;
+    margin: 30px auto;
+    border: 1px solid black;
+}
+
+.ContainerInner {
+    padding: 10px;
+}
+
+.Btn {
+    background-color: #c2fbd7;
+    border-width: 0;
+    box-shadow: rgba(25, 25, 25, .04) 0 0 1px 0, rgba(0, 0, 0, .1) 0 3px 4px 0;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    padding: 0 20px;
+    transition: all 200ms;
+}
+
+.Btn:hover {
+    background-color: #afe6c3;
+    transform: scale(1.05);
+}
+
+.Btn:disabled {
+    cursor: not-allowed;
+}
+
+.Bill {
+    margin-top: 20px;
+}
+
+.Bill span {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.Bill p {
+    margin: 8px 0;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {nanoid} from "nanoid";
 import ModeControl from "../../components/ModeControl/ModeControl";
 
@@ -23,7 +23,7 @@ const Calculator = () => {
       tips: 0,
       delivery: 0
     }));
-    if(value === 'split') {
+    if (value === 'split') {
       setPeople([]);
     } else {
       setSplitData(prev => ({
@@ -62,12 +62,12 @@ const Calculator = () => {
               ...person,
               [name]: parseInt(value),
             }
-          } else if(name === 'sum' && value === '') {
+          } else if (name === 'sum' && value === '') {
             return {
               ...person,
               [name]: 0,
             }
-          } else if(name === 'userName') {
+          } else if (name === 'userName') {
             return {
               ...person,
               [name]: value,
@@ -85,8 +85,8 @@ const Calculator = () => {
       const totalSum =
         splitData.orderPrice +
         ((splitData.orderPrice / 100) * serviceData.tips) +
-        parseInt(serviceData.delivery)
-      ;
+        parseInt(serviceData.delivery);
+
       const sumPerPerson = Math.ceil(totalSum / splitData.personsNumber);
 
       return setSplitData(prev => ({
@@ -98,11 +98,10 @@ const Calculator = () => {
       const deliveryPerPerson = serviceData.delivery / peopleCopy.length;
       return setPeople(() => {
         return peopleCopy.map(person => {
-            return {
-              ...person,
-              sumForPay: (person.sum + ((person.sum / 100) * serviceData.tips) + deliveryPerPerson),
-            };
-
+          return {
+            ...person,
+            sumForPay: Math.ceil((person.sum + ((person.sum / 100) * serviceData.tips) + deliveryPerPerson)),
+          };
         });
       });
     }
@@ -110,11 +109,9 @@ const Calculator = () => {
 
   const getTotalSumOfIndMode = () => {
     let total = 0;
-
     for (let i = 0; i < people.length; i++) {
       total += people[i].sumForPay;
     }
-
     return total;
   };
 
@@ -141,39 +138,37 @@ const Calculator = () => {
         return true;
       }
     } else {
-      const d = [];
-      for(let i = 0; i < people.length; i++) {
-        if(people[i].sum === '' || people[i].userName === '' || people[i].sum === 0) {
-          d.push(people[i]);
+      const checkArray = [];
+      for (let i = 0; i < people.length; i++) {
+        if (people[i].sum === '' || people[i].userName === '' || people[i].sum === 0) {
+          checkArray.push(people[i]);
         }
       }
 
-      if(d.length === 0) {
-        return false;
-      } else {
-        return true;
-      }
+      return checkArray.length !== 0;
     }
   };
 
   return (
     <div className="Container">
-      <h2>Сумма заказа считается:</h2>
-      <ModeControl
-        mode={mode}
-        changeMode={(e) => onModeChange(e.target.value)}
-        splitData={splitData}
-        serviceData={serviceData}
-        people={people}
-        changeSplitData={(e) => onChangeSplitData(e.target.name, e.target.value)}
-        changeServiceData={(e) => onChangeServiceData(e.target.name, e.target.value)}
-        changePersonData={(e, id) => onChangePersonData(e.target.name, e.target.value, id)}
-        calculate={() => onCalculate()}
-        addPerson={() => onAddPerson()}
-        getIndTotalSum={getTotalSumOfIndMode()}
-        removePerson={(e, id) => onRemovePerson(id)}
-        disabled={checkDisabled()}
-      />
+      <div className="ContainerInner">
+        <h2>Сумма заказа считается:</h2>
+        <ModeControl
+          mode={mode}
+          changeMode={(e) => onModeChange(e.target.value)}
+          splitData={splitData}
+          serviceData={serviceData}
+          people={people}
+          changeSplitData={(e) => onChangeSplitData(e.target.name, e.target.value)}
+          changeServiceData={(e) => onChangeServiceData(e.target.name, e.target.value)}
+          changePersonData={(e, id) => onChangePersonData(e.target.name, e.target.value, id)}
+          calculate={() => onCalculate()}
+          addPerson={() => onAddPerson()}
+          getIndTotalSum={getTotalSumOfIndMode()}
+          removePerson={(e, id) => onRemovePerson(id)}
+          disabled={checkDisabled()}
+        />
+      </div>
     </div>
   );
 };

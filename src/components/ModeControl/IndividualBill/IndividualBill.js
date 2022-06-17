@@ -1,15 +1,19 @@
-import React from 'react';
-
 const IndividualBill = (props) => {
   return (
-    <div>
-      <p>Общая сумма: {props.getTotal} сом</p>
+    <div className="Bill">
+      <p><span>Общая сумма:</span> {props.getTotal} сом</p>
       {props.people.map(person => {
         return (
-          <div key={person.id} style={person.userName === '' ? {display: 'none'}: {display: 'block'}}>
-            <p>{person.userName}: {person.sumForPay} сом</p>
-          </div>
-        )
+          <p
+            key={person.id}
+            style={person.userName === '' ? {display: 'none'} : {display: 'block'}}
+          >
+            <span>
+              {person.userName}:
+            </span>
+            {person.sumForPay} сом
+          </p>
+        );
       })}
     </div>
   );
